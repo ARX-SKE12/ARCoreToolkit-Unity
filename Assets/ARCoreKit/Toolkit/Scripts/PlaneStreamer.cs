@@ -4,10 +4,15 @@ using PublisherKit;
 
 public class PlaneStreamer : Publisher {
 
+#region Attributes
     List<TrackedPlane> newPlanes, allPlanes;
+    #endregion
 
+#region Events
     const string NEW_PLANES_EVENT = "OnNewPlanesDetected";
+#endregion
 
+#region Untiy Behaviour
     void Awake()
     {
         InitializePlaneCollector();
@@ -17,13 +22,17 @@ public class PlaneStreamer : Publisher {
 	void Update () {
         StreamPlanes();
 	}
+#endregion
 
+#region Plane Collector
     void InitializePlaneCollector()
     {
         newPlanes = new List<TrackedPlane>();
         allPlanes = new List<TrackedPlane>();
     }
+#endregion
 
+#region Planes Streamer
     void StreamPlanes()
     {
         if (IsTracking())
@@ -44,10 +53,13 @@ public class PlaneStreamer : Publisher {
         Session.GetTrackables<TrackedPlane>(allPlanes, TrackableQueryFilter.All);
         return allPlanes;
     }
+#endregion
 
+#region Tracking Status
     bool IsTracking()
     {
         return Session.Status == SessionStatus.Tracking;
     }
+#endregion
 
 }
