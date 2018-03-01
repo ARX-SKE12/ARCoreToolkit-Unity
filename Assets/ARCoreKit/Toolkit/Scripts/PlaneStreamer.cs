@@ -31,7 +31,7 @@ public class PlaneStreamer : Publisher {
         allPlanes = new List<TrackedPlane>();
     }
 #endregion
-
+        
 #region Planes Streamer
     void StreamPlanes()
     {
