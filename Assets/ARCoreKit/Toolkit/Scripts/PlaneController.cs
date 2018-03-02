@@ -24,7 +24,7 @@ namespace ARCoreToolkit
             streamer = GetComponent<PlaneStreamer>();
         }
 
-        void ChangePlaneState()
+        public void ChangePlaneTrackingState()
         {
             session.SessionConfig.EnablePlaneFinding = !isPlaneTrackingEnable();
             lifecycleManager.EnableSession();
