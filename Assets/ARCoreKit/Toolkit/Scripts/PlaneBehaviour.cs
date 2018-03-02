@@ -2,7 +2,7 @@
 using UnityEngine;
 using GoogleARCore;
 
-namespace ARToolkit
+namespace ARCoreToolkit
 {
     public class PlaneBehaviour : MonoBehaviour
     {

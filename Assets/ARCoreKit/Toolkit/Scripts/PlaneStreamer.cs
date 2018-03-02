@@ -2,7 +2,7 @@
 using GoogleARCore;
 using PublisherKit;
 
-namespace ARToolkit
+namespace ARCoreToolkit
 {
     public class PlaneStreamer : Publisher
     {
