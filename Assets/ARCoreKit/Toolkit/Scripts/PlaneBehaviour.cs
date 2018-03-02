@@ -37,6 +37,7 @@ namespace ARCoreToolkit
             referencePlane = plane;
             vertices = new List<Vector3>();
             indices = new List<int>();
+            Update();
         }
         #endregion
 
@@ -46,14 +47,14 @@ namespace ARCoreToolkit
             referencePlane.GetBoundaryPolygon(vertices);
             center = referencePlane.CenterPose.position;
             polygonCount = vertices.Count;
-            BuildInnerVertices();
+            BuildInnerVertices(polygonCount);
             BuildIndices(polygonCount);
             BuildMesh();
         }
 
-        void BuildInnerVertices()
+        void BuildInnerVertices(int polygonCount)
         {
-            for (int i = 0; i < vertices.Count; ++i)
+            for (int i = 0; i < polygonCount; ++i)
             {
                 Vector3 v = vertices[i];
                 Vector3 d = v - center;
@@ -62,21 +63,21 @@ namespace ARCoreToolkit
             }
         }
 
-        void BuildIndices(int ploygonCount)
+        void BuildIndices(int polygonCount)
         {
             indices.Clear();
-            for (int i = 0; i < ploygonCount - 2; ++i)
+            for (int i = 0; i < polygonCount - 2; ++i)
             {
-                indices.Add(ploygonCount);
-                indices.Add(ploygonCount + i + 1);
-                indices.Add(ploygonCount + i + 2);
+                indices.Add(polygonCount);
+                indices.Add(polygonCount + i + 1);
+                indices.Add(polygonCount + i + 2);
             }
-            for (int i = 0; i < ploygonCount; ++i)
+            for (int i = 0; i < polygonCount; ++i)
             {
                 int outerVertex1 = i;
-                int outerVertex2 = ((i + 1) % ploygonCount);
-                int innerVertex1 = ploygonCount + i;
-                int innerVertex2 = ploygonCount + ((i + 1) % ploygonCount);
+                int outerVertex2 = ((i + 1) % polygonCount);
+                int innerVertex1 = polygonCount + i;
+                int innerVertex2 = polygonCount + ((i + 1) % polygonCount);
 
                 indices.Add(outerVertex1);
                 indices.Add(outerVertex2);
