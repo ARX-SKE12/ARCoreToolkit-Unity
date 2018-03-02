@@ -6,15 +6,20 @@ namespace ARCoreToolkit
     public class PlaneGenerator : MonoBehaviour
     {
 
+    #region Plane Components
         public Material planeMaterial;
         public GameObject planePrefab;
+    #endregion
 
+    #region Unity Behaviour
         // Use this for initialization
         void Start()
         {
             GameObject.FindObjectOfType<PlaneStreamer>().Register(gameObject);
         }
+    #endregion
 
+    #region Plane Detecting
         void OnNewPlanesDetected(List<TrackedPlane> trackedPlanes)
         {
             foreach (TrackedPlane plane in trackedPlanes)
@@ -24,6 +29,7 @@ namespace ARCoreToolkit
                 planeObject.GetComponent<MeshRenderer>().material = planeMaterial;
             }
         }
+    #endregion
 
     }
 }
