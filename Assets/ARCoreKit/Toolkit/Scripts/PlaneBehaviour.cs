@@ -50,6 +50,7 @@ namespace ARCoreToolkit
             BuildInnerVertices(polygonCount);
             BuildIndices(polygonCount);
             BuildMesh();
+            SendMessage("OnUpdateMesh", mesh, SendMessageOptions.DontRequireReceiver);
         }
 
         void BuildInnerVertices(int polygonCount)
